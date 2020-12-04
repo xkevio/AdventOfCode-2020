@@ -21,7 +21,7 @@ Afterwards you will have an executable called `a.exe` which you can just open vi
 ### Example:
 ```
 git clone https://github.com/xkevio/adventofcode-2020.git
-cd adventofcode_2020/day_01
+cd adventofcode_2020/day_1
 g++ .\main.cpp
 .\a.exe
 ```
