@@ -2,7 +2,6 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include <algorithm>
 #include <vector>
 #include <regex>
 
@@ -23,9 +22,8 @@ int valid_passports(std::string passports, std::regex re) {
     }
     v.push_back(p);
 
-    for (size_t i = 0; i < v.size(); i++)
-    {
-        if(std::regex_match(v[i], re)) {
+    for(const auto &l : v) {
+        if(std::regex_match(l, re)) {
             valid++;
         }
     }
