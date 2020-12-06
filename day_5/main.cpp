@@ -3,7 +3,7 @@
 #include <string>
 #include <cmath>
 #include <algorithm>
-#include <unordered_set>
+#include <vector>
 
 int get_seat_id(std::string seat) {
     int rows = 0;
@@ -20,22 +20,25 @@ int get_seat_id(std::string seat) {
 
 int main(int, char**) {
     std::ifstream file;
-    std::unordered_set<int> all_seats;
+    std::vector<int> all_seats;
     std::string cur_seat;
     file.open("input.txt");
 
     while(getline(file, cur_seat)) {
-        all_seats.insert(get_seat_id(cur_seat));
+        all_seats.push_back(get_seat_id(cur_seat));
     }
 
     std::cout << "Part 1: " << *std::max_element(all_seats.begin(), all_seats.end()) << std::endl;
-    for (size_t i = 46; i <= 915; i++)
+
+    std::sort(all_seats.begin(), all_seats.end());
+    for (size_t i = all_seats[0]; i < all_seats[all_seats.size()-1]; i++)
     {
-        if(all_seats.find(i) == all_seats.end()) {
-            std::cout << "Part 2: " << i << std::endl;
+        if(all_seats[i] != all_seats[0] + i) {
+            std::cout << "Part 2: " << all_seats[0] + i << std::endl;
             break;
         }
     }
+    
 
     file.close();
     return EXIT_SUCCESS;
