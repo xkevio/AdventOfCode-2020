@@ -11,6 +11,7 @@ This repo is a work-in-progress to fully cover all challenges. So have fun with 
 - [x] Day 2
 - [x] Day 3
 - [x] Day 4
+- [x] Day 5
 
 ## How do I compile the solutions?
 
