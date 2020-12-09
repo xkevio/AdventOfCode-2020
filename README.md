@@ -10,7 +10,7 @@ This repo is a work-in-progress to fully cover all challenges. So have fun with 
 | Week 1        | Week 2        |
 | ------------- |:-------------:|
 | ✅ Day 1    | ✅ Day 8 | 
-| ✅ Day 2    |      |   
+| ✅ Day 2    | ✅ Day 9   |   
 | ✅ Day 3 |
 | ✅ Day 4 |
 | ✅ Day 5 |
