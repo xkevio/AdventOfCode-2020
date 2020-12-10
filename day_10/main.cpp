@@ -26,7 +26,7 @@ int joltage_diff(std::vector<int> adapters) {
     return one_diff * three_diff;
 }
 
-void construct_adjacency_list(std::unordered_map<int, std::vector<int>> &graph, std::vector<int> adapters) {
+void construct_adjacency_list(std::vector<int> adapters) {
     for (size_t i = 0; i < adapters.size(); i++)
     {
         std::vector<int> list;
@@ -77,7 +77,7 @@ int main(int, char**) {
     adapters.push_back(0);
 
     std::sort(adapters.begin(), adapters.end());
-    construct_adjacency_list(graph, adapters);
+    construct_adjacency_list(adapters);
 
     std::cout << "Part 1: " << joltage_diff(adapters) << std::endl;
     std::cout << "Part 2: " << get_arrangements(adapters[0]) << std::endl;
