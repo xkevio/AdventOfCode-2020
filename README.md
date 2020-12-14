@@ -9,13 +9,13 @@ This repo is a work-in-progress to fully cover all challenges. So have fun with 
 
 | Week 1        | Week 2        |
 | ------------- |:-------------:|
-| ✅ Day 1    | ✅ Day 8 | 
-| ✅ Day 2    | ✅ Day 9   |   
-| ✅ Day 3 | ✅ Day 10 |
-| ✅ Day 4 | ✅ Day 11 |
-| ✅ Day 5 | ✅ Day 12 |
-| ✅ Day 6 | ✅ Day 13 |
-| ✅ Day 7    |      |   
+| ✅ Day 1    | ✅ Day 8       | 
+| ✅ Day 2    | ✅ Day 9       |   
+| ✅ Day 3    | ✅ Day 10      |
+| ✅ Day 4    | ✅ Day 11      |
+| ✅ Day 5    | ✅ Day 12      |
+| ✅ Day 6    | ✅ Day 13      |
+| ✅ Day 7    | ✅ Day 14      |   
 
 ## How do I compile the solutions?
 

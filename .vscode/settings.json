@@ -57,6 +57,7 @@
         "numeric": "cpp",
         "unordered_map": "cpp",
         "chrono": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "bitset": "cpp"
     }
 }
