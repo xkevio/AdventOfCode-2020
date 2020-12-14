@@ -14,7 +14,7 @@ This repo is a work-in-progress to fully cover all challenges. So have fun with 
 | ✅ Day 3 | ✅ Day 10 |
 | ✅ Day 4 | ✅ Day 11 |
 | ✅ Day 5 | ✅ Day 12 |
-| ✅ Day 6 |
+| ✅ Day 6 | ✅ Day 13 |
 | ✅ Day 7    |      |   
 
 ## How do I compile the solutions?
