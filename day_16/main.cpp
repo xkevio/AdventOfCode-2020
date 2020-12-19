@@ -64,11 +64,11 @@ void remove_multiple_ranges(std::unordered_map<int, std::vector<std::string>> &o
 
     while(treated.size() < 20) {
         for(auto &p : order) {
-        if(p.second.size() == 1 && std::find(treated.begin(), treated.end(), p.first) == treated.end()) {
-            word = p.second[0];
-            treated.push_back(p.first);
+            if(p.second.size() == 1 && std::find(treated.begin(), treated.end(), p.first) == treated.end()) {
+                word = p.second[0];
+                treated.push_back(p.first);
+            }
         }
-    }
         for(auto &p : order) {
             if(p.second.size() > 1) {
                 p.second.erase(std::remove(p.second.begin(), p.second.end(), word), p.second.end());
