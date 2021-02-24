@@ -1,26 +1,26 @@
-#include <iostream>
-#include <string>
-#include <unordered_map>
-#include <fstream>
-#include <vector>
-#include <sstream>
 #include <algorithm>
 #include <cctype>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <unordered_map>
 #include <utility>
+#include <vector>
 
-//should have just done it with a Bag class, oh well
+// should have just done it with a Bag class, oh well
 std::unordered_map<std::string, std::vector<std::string>> graph;
 std::unordered_map<std::string, std::vector<std::string>> graph2;
 
-bool get_paths(std::string key, std::string what) {
-    key.erase(key.find_last_not_of(' ')+1);
+bool get_paths(std::string key, const std::string& what) {
+    key.erase(key.find_last_not_of(' ') + 1);
     bool t = false;
 
     auto values = graph.at(key);
 
-    if(values.empty()) return false;
-    for(auto v : values) {
-        if(v.find(what) != std::string::npos) {
+    if (values.empty()) return false;
+    for (const auto& v : values) {
+        if (v.find(what) != std::string::npos) {
             return true;
         } else {
             t = t || get_paths(v, what);
@@ -30,14 +30,14 @@ bool get_paths(std::string key, std::string what) {
     return t;
 }
 
-int get_bags(std::string start) {
+int get_bags(const std::string& start) {
     int b = 0;
     auto bags = graph2.at(start);
 
-    if(bags.empty()) return 0;
-    for(auto bb : bags) {
+    if (bags.empty()) return 0;
+    for (auto bb : bags) {
         bb.erase(0, bb.find_first_not_of(' '));
-        bb.erase(bb.find_last_not_of(' ')+1);
+        bb.erase(bb.find_last_not_of(' ') + 1);
 
         int mult = bb[0] - '0';
         b += mult + mult * get_bags(bb.substr(2));
@@ -48,12 +48,12 @@ int get_bags(std::string start) {
 
 int main(int, char**) {
     std::ifstream file;
-    std::string line; 
+    std::string line;
     int p1 = 0;
-    
+
     file.open("input.txt");
 
-    while(getline(file, line)) {
+    while (getline(file, line)) {
         std::string key;
         std::string bag;
         std::vector<std::string> adjacent;
@@ -62,8 +62,8 @@ int main(int, char**) {
         key = line.substr(0, line.find("bags") - 1);
         bag = line.substr(line.find("contain") + 8, line.length());
 
-        if(bag[0] != 'n') {
-            if(bag.find(",") == std::string::npos) {
+        if (bag[0] != 'n') {
+            if (bag.find(",") == std::string::npos) {
                 adjacent2.push_back(bag.substr(0, bag.find("bag") - 1));
 
                 bag = bag.substr(2, bag.length());
@@ -71,37 +71,33 @@ int main(int, char**) {
             } else {
                 std::stringstream st(bag.substr(0, bag.length() - 5));
                 std::string cur;
-                while(getline(st, cur, ',')) {
+                while (getline(st, cur, ',')) {
                     adjacent2.push_back(cur.substr(0, cur.find("bag") - 1));
 
                     cur.erase(0, cur.find_first_not_of(' '));
                     cur.erase(std::remove_if(cur.begin(), cur.end(), isdigit), cur.end());
                     cur.erase(0, cur.find_first_not_of(' '));
-                    
+
                     adjacent.push_back(cur.substr(0, cur.find("bag") - 1));
                 }
             }
-            std::pair<std::string, std::vector<std::string>> p;
-            p = std::make_pair(key, adjacent);
+            auto p = std::make_pair(key, adjacent);
             graph.insert(p);
 
-            std::pair<std::string, std::vector<std::string>> p2;
-            p2 = std::make_pair(key, adjacent2);
+            auto p2 = std::make_pair(key, adjacent2);
             graph2.insert(p2);
         } else {
-            std::pair<std::string, std::vector<std::string>> p;
             std::vector<std::string> empty;
-            p = std::make_pair(key, empty);
+            auto p = std::make_pair(key, empty);
             graph.insert(p);
 
-            std::pair<std::string, std::vector<std::string>> p2;
-            p2 = std::make_pair(key, empty);
+            auto p2 = std::make_pair(key, empty);
             graph2.insert(p2);
         }
     }
 
-    for(auto p : graph) {
-        if(get_paths(p.first, "shiny gold")) {
+    for (const auto& p : graph) {
+        if (get_paths(p.first, "shiny gold")) {
             p1++;
         }
     }
