@@ -1,11 +1,11 @@
-#include <iostream>
 #include <fstream>
-#include <string>
+#include <iostream>
 #include <sstream>
+#include <string>
 
-#define TREE '#'
+constexpr char tree = '#';
 
-size_t get_trees(std::string forest, int right, int down) {
+size_t get_trees(const std::string& forest, int right, int down) {
     size_t trees = 0;
     int current_line = 0;
     int i = 0;
@@ -14,31 +14,31 @@ size_t get_trees(std::string forest, int right, int down) {
     std::string line;
     std::istringstream stream(forest);
 
-    while(std::getline(stream, line)) {
-        if(current_line == 0) {
+    while (std::getline(stream, line)) {
+        if (current_line == 0) {
             current_line += down;
             i++;
             continue;
         }
-        if(i % down != 0) {
+        if (i % down != 0) {
             i++;
             continue;
         }
 
-        int index = down == 1 ? current_line * right : right + j;
+        unsigned int index = down == 1 ? current_line * right : right + j;
         j += right;
 
-        if(index >= line.length()) {
+        if (index >= line.length()) {
             index %= line.length();
-        } 
+        }
 
-        if(line[index] == TREE) {
+        if (line[index] == tree) {
             trees++;
         }
         current_line += down;
         i++;
     }
-    
+
     return trees;
 }
 
