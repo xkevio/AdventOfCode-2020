@@ -1,16 +1,16 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <numeric>
 #include <sstream>
 #include <string>
 #include <unordered_set>
 #include <vector>
-#include <numeric>
 
 int get_group_sum(const std::string& answers) {
     std::unordered_set<char> exists;
 
-    for (size_t i = 0; i < answers.length(); i++) {
+    for (std::size_t i = 0; i < answers.length(); i++) {
         exists.insert(answers[i]);
     }
 
@@ -24,7 +24,7 @@ int get_real_group_sum(std::string& answers) {
 
     int val = 0;
 
-    while (getline(a, w, ' ')) {
+    while (std::getline(a, w, ' ')) {
         words.push_back(w);
     }
 
@@ -43,12 +43,10 @@ int get_real_group_sum(std::string& answers) {
 }
 
 int main(int, char**) {
-    std::ifstream file;
+    std::ifstream file("input.txt");
     std::vector<int> v;
     std::vector<int> v2;
     std::string line;
-
-    file.open("input.txt");
 
     std::string cur = "";
     std::string cur2 = "";
@@ -72,6 +70,5 @@ int main(int, char**) {
     auto part2 = std::accumulate(v2.begin(), v2.end(), 0);
     std::cout << "Part 2: " << part2 << std::endl;
 
-    file.close();
     return EXIT_SUCCESS;
 }
