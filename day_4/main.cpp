@@ -7,14 +7,14 @@
 
 int valid_passports(const std::string& passports, const std::regex& re) {
     int valid = 0;
-    
+
     std::string cur_passport;
     std::string p = "";
 
     std::stringstream st(passports);
     std::vector<std::string> v;
 
-    while (getline(st, cur_passport)) {
+    while (std::getline(st, cur_passport)) {
         if (cur_passport.empty()) {
             v.push_back(p);
             p = "";
@@ -33,12 +33,11 @@ int valid_passports(const std::string& passports, const std::regex& re) {
     return valid;
 }
 
-int main(int, char**) {
-    std::ifstream file;
+int main() {
+    std::ifstream file("input.txt");
     std::string passports;
     std::stringstream p_stream;
 
-    file.open("input.txt");
     p_stream << file.rdbuf();
 
     std::regex re(
@@ -53,6 +52,5 @@ int main(int, char**) {
     std::cout << "Part 1: " << valid_passports(p_stream.str(), re) << std::endl;
     std::cout << "Part 2: " << valid_passports(p_stream.str(), re2) << std::endl;
 
-    file.close();
     return EXIT_SUCCESS;
 }

@@ -42,7 +42,7 @@ std::size_t get_trees(const std::string& forest, int right, int down) {
     return trees;
 }
 
-int main(int, char**) {
+int main() {
     std::ifstream file("input.txt");
     std::stringstream forest;
     forest << file.rdbuf();
