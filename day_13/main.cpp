@@ -54,8 +54,7 @@ int get_earliest_bus(int id, const std::vector<int>& service) {
     for (const auto& k : possible_ids) {
         ids.push_back(k.first);
     }
-    return (*std::min_element(ids.begin(), ids.end()) - id) *
-           possible_ids.at(*std::min_element(ids.begin(), ids.end()));
+    return (*std::min_element(ids.begin(), ids.end()) - id) * possible_ids.at(*std::min_element(ids.begin(), ids.end()));
 }
 
 int main(int, char**) {

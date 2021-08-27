@@ -16,7 +16,7 @@ int joltage_diff(const std::vector<int>& adapters) {
     if (adapters[0] - 0 == 1) one_diff++;
     if (adapters[0] - 0 == 3) three_diff++;
 
-    for (size_t i = 0; i < adapters.size() - 1; i++) {
+    for (std::size_t i = 0; i < adapters.size() - 1; i++) {
         if (adapters[i + 1] - adapters[i] == 1) one_diff++;
         if (adapters[i + 1] - adapters[i] == 3) three_diff++;
     }
@@ -26,7 +26,7 @@ int joltage_diff(const std::vector<int>& adapters) {
 }
 
 void construct_adjacency_list(const std::vector<int>& adapters) {
-    for (size_t i = 0; i < adapters.size(); i++) {
+    for (std::size_t i = 0; i < adapters.size(); i++) {
         std::vector<int> list;
         if (std::find(adapters.begin(), adapters.end(), adapters[i] + 1) != adapters.end()) {
             list.push_back(adapters[i] + 1);
@@ -43,8 +43,8 @@ void construct_adjacency_list(const std::vector<int>& adapters) {
     }
 }
 
-size_t get_arrangements(int start) {
-    size_t arr = 0;
+std::size_t get_arrangements(int start) {
+    std::size_t arr = 0;
 
     if (graph.at(start).empty()) {
         return ++arr;
@@ -62,14 +62,13 @@ size_t get_arrangements(int start) {
     return arr;
 }
 
-int main(int, char**) {
-    std::ifstream file;
+int main() {
+    std::ifstream file("input.txt");
     std::vector<int> adapters;
     std::string cur;
 
-    file.open("input.txt");
-    while (getline(file, cur)) {
-        adapters.push_back(stoi(cur));
+    while (std::getline(file, cur)) {
+        adapters.push_back(std::stoi(cur));
     }
     adapters.push_back(0);
 
@@ -79,6 +78,5 @@ int main(int, char**) {
     std::cout << "Part 1: " << joltage_diff(adapters) << std::endl;
     std::cout << "Part 2: " << get_arrangements(adapters[0]) << std::endl;
 
-    file.close();
     return EXIT_SUCCESS;
 }

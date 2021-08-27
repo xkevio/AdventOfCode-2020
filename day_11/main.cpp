@@ -129,8 +129,8 @@ int get_neighbours(int row, int col, const std::vector<std::vector<char>>& grid)
 }
 
 void cycle(const std::vector<std::vector<char>>& grid, std::vector<std::vector<char>>& new_grid, bool part2) {
-    for (size_t i = 0; i < grid.size(); i++) {
-        for (size_t j = 0; j < grid[i].size(); j++) {
+    for (std::size_t i = 0; i < grid.size(); i++) {
+        for (std::size_t j = 0; j < grid[i].size(); j++) {
             if (!part2) {
                 if (grid[i][j] == 'L' && get_neighbours(i, j, grid) == 0) {
                     new_grid[i][j] = '#';
@@ -150,6 +150,7 @@ void cycle(const std::vector<std::vector<char>>& grid, std::vector<std::vector<c
     }
 }
 
+// jesus...
 int get_occupied_seats(std::vector<std::vector<char>> grid, bool part2) {
     int seats = 0;
 
@@ -164,8 +165,8 @@ int get_occupied_seats(std::vector<std::vector<char>> grid, bool part2) {
         new_grid = new_grid2;
         cycle(new_grid, new_grid2, part2);
     }
-    for (const auto &k : new_grid) {
-        for (const auto &v : k) {
+    for (const auto& k : new_grid) {
+        for (const auto& v : k) {
             if (v == '#') seats++;
         }
     }
@@ -173,15 +174,14 @@ int get_occupied_seats(std::vector<std::vector<char>> grid, bool part2) {
     return seats;
 }
 
-int main(int, char**) {
-    std::ifstream file;
+int main() {
+    std::ifstream file("input.txt");
     std::vector<std::vector<char>> grid;
     std::string cur;
 
-    file.open("input.txt");
-    while (getline(file, cur)) {
+    while (std::getline(file, cur)) {
         std::vector<char> row;
-        for (size_t i = 0; i < cur.length(); i++) {
+        for (std::size_t i = 0; i < cur.length(); i++) {
             row.push_back(cur[i]);
         }
         grid.push_back(row);
@@ -190,6 +190,5 @@ int main(int, char**) {
     std::cout << "Part 1: " << get_occupied_seats(grid, false) << std::endl;
     std::cout << "Part 2: " << get_occupied_seats(grid, true) << std::endl;
 
-    file.close();
     return EXIT_SUCCESS;
 }

@@ -5,13 +5,13 @@
 #include <unordered_set>
 #include <vector>
 
-enum Instructions { NOP, JMP, ACC, INVALID };
+enum class Instructions { NOP, JMP, ACC, INVALID };
 
-Instructions resolve(const std::string& input) {
-    if (input == "nop") return NOP;
-    if (input == "jmp") return JMP;
-    if (input == "acc") return ACC;
-    return INVALID;
+constexpr Instructions resolve(const std::string& input) {
+    if (input == "nop") return Instructions::NOP;
+    if (input == "jmp") return Instructions::JMP;
+    if (input == "acc") return Instructions::ACC;
+    return Instructions::INVALID;
 }
 
 std::unordered_set<int> execute(const std::vector<std::string>& instructions, int& acc, bool loop) {
@@ -26,16 +26,16 @@ std::unordered_set<int> execute(const std::vector<std::string>& instructions, in
 
         std::string ins = instructions[program_counter].substr(0, instructions[program_counter].find(' '));
         std::string snum = instructions[program_counter].substr(instructions[program_counter].find(' ') + 1);
-        int num = snum[0] == '+' ? stoi(snum.substr(1)) : -(stoi(snum.substr(1)));
+        int num = snum[0] == '+' ? std::stoi(snum.substr(1)) : -(std::stoi(snum.substr(1)));
 
         switch (resolve(ins)) {
-            case NOP:
+            case Instructions::NOP:
                 program_counter++;
                 break;
-            case JMP:
+            case Instructions::JMP:
                 program_counter += num;
                 break;
-            case ACC:
+            case Instructions::ACC:
                 acc += num;
                 program_counter++;
                 break;
@@ -78,13 +78,12 @@ int find_flip_counter(const std::vector<std::string>& instructions) {
     return 0;
 }
 
-int main(int, char**) {
-    std::ifstream file;
+int main() {
+    std::ifstream file("input.txt");
     std::vector<std::string> instructions;
     std::string cur;
-    file.open("input.txt");
 
-    while (getline(file, cur)) {
+    while (std::getline(file, cur)) {
         instructions.push_back(cur);
     }
 
@@ -102,6 +101,5 @@ int main(int, char**) {
     auto exec2 = execute(instructions, acc2, true);
     std::cout << "Part 2: " << acc2 << std::endl;
 
-    file.close();
     return EXIT_SUCCESS;
 }

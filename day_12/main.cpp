@@ -11,18 +11,13 @@ struct Waypoint {
 
 class Ship {
    public:
-    int manhattan_distance();
+    constexpr int manhattan_distance() const;
     void move(char ins, int val);
     void move_relative(char ins, int val);
-    Ship(char dir, int we_start, int ns_start) {
-        cur_dir = dir;
-        we = we_start;
-        ns = ns_start;
-
+    Ship(char dir, int we_start, int ns_start) : cur_dir(dir), we(we_start), ns(ns_start) {
         waypoint.ns = 1;
         waypoint.we = 10;
     };
-    ~Ship() {};
 
    private:
     int we;
@@ -32,7 +27,9 @@ class Ship {
     void change_direction(char dir, int angle);
 };
 
-int Ship::manhattan_distance() { return abs(ns) + abs(we); }
+constexpr int Ship::manhattan_distance() const {
+    return abs(ns) + abs(we);
+}
 
 void Ship::move_relative(char ins, int val) {
     switch (ins) {
@@ -110,7 +107,7 @@ void Ship::move(char ins, int val) {
 void Ship::change_direction(char dir, int angle) {
     if (angle == 360) return;
     int ii = angle / 90;
-    for (size_t i = 0; i < ii; i++) {
+    for (std::size_t i = 0; i < ii; i++) {
         if (dir == 'R') {
             switch (cur_dir) {
                 case 'N':
@@ -150,13 +147,12 @@ void Ship::change_direction(char dir, int angle) {
     }
 }
 
-int main(int, char**) {
-    std::ifstream file;
+int main() {
+    std::ifstream file("input.txt");
     std::string cur;
     std::vector<std::string> ins;
-    file.open("input.txt");
 
-    while (getline(file, cur)) {
+    while (std::getline(file, cur)) {
         ins.push_back(cur);
     }
 
@@ -164,7 +160,7 @@ int main(int, char**) {
     Ship ship2('E', 0, 0);
     for (auto& in : ins) {
         char a = in[0];
-        int val = stoi(in.substr(1));
+        int val = std::stoi(in.substr(1));
 
         ship.move(a, val);
         ship2.move_relative(a, val);
@@ -173,6 +169,5 @@ int main(int, char**) {
     std::cout << "Part 1: " << ship.manhattan_distance() << std::endl;
     std::cout << "Part 2: " << ship2.manhattan_distance() << std::endl;
 
-    file.close();
     return EXIT_SUCCESS;
 }

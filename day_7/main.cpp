@@ -46,14 +46,12 @@ int get_bags(const std::string& start) {
     return b;
 }
 
-int main(int, char**) {
-    std::ifstream file;
+int main() {
+    std::ifstream file("input.txt");
     std::string line;
     int p1 = 0;
 
-    file.open("input.txt");
-
-    while (getline(file, line)) {
+    while (std::getline(file, line)) {
         std::string key;
         std::string bag;
         std::vector<std::string> adjacent;
@@ -105,6 +103,5 @@ int main(int, char**) {
     std::cout << "Part 1: " << p1 << std::endl;
     std::cout << "Part 2: " << get_bags("shiny gold") << std::endl;
 
-    file.close();
     return EXIT_SUCCESS;
 }
