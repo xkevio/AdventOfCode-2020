@@ -5,8 +5,8 @@
 
 constexpr char tree = '#';
 
-size_t get_trees(const std::string& forest, int right, int down) {
-    size_t trees = 0;
+std::size_t get_trees(const std::string& forest, int right, int down) {
+    std::size_t trees = 0;
     int current_line = 0;
     int i = 0;
     int j = 0;
@@ -25,7 +25,7 @@ size_t get_trees(const std::string& forest, int right, int down) {
             continue;
         }
 
-        unsigned int index = down == 1 ? current_line * right : right + j;
+        std::size_t index = down == 1 ? current_line * right : right + j;
         j += right;
 
         if (index >= line.length()) {
@@ -43,20 +43,18 @@ size_t get_trees(const std::string& forest, int right, int down) {
 }
 
 int main(int, char**) {
-    std::ifstream file;
+    std::ifstream file("input.txt");
     std::stringstream forest;
-    file.open("input.txt");
     forest << file.rdbuf();
 
-    size_t a = get_trees(forest.str(), 3, 1);
-    size_t b = get_trees(forest.str(), 1, 1);
-    size_t c = get_trees(forest.str(), 5, 1);
-    size_t d = get_trees(forest.str(), 7, 1);
-    size_t e = get_trees(forest.str(), 1, 2);
+    std::size_t a = get_trees(forest.str(), 3, 1);
+    std::size_t b = get_trees(forest.str(), 1, 1);
+    std::size_t c = get_trees(forest.str(), 5, 1);
+    std::size_t d = get_trees(forest.str(), 7, 1);
+    std::size_t e = get_trees(forest.str(), 1, 2);
 
     std::cout << "Part 1: " << a << std::endl;
     std::cout << "Part 2: " << (a * b * c * d * e) << std::endl;
 
-    file.close();
     return EXIT_SUCCESS;
 }
