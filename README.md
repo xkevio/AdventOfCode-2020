@@ -20,7 +20,7 @@ This repo is a work-in-progress to fully cover all challenges. So have fun with 
 ## How do I compile the solutions?
 
 You simply clone the repository, head into the solution you want to see and use whatever C++ Compiler you're familiar with. I personally use `g++` for Windows, so simply compile with `g++ .\main.cpp`.
-Afterwards you will have an executable called `a.exe` which you can just open via the terminal. The inputs for each day are included.
+Afterwards you will have an executable called `a.exe` which you can just open via the terminal. The inputs for each day are not included.
 
 
 ### Example:
