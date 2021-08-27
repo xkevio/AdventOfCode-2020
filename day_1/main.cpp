@@ -54,7 +54,7 @@ int main() {
 
     if (file) {
         while (std::getline(file, text)) {
-            list.push_back(stoi(text));
+            list.push_back(std::stoi(text));
         }
     }
 
